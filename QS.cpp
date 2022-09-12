@@ -1,20 +1,17 @@
 #include <iostream>
 
 class Node {
-
 public:
   int Data;
-  Node* Next;
-  Node* Previous;
-
-
+  Node* Next; // points to next node 
+  Node* Previous; // points to previous point 
 };
 
 
 class Queue{
 public:
-  Node* Head;
-  Node* Tail;
+  Node* Head; // begining of the list 
+  Node* Tail; // last element 
   int size;
 Queue(){
   Head = NULL;
@@ -29,19 +26,22 @@ Node* Deq(){
     std::cout << "Queue is Empty!!!"<<std::endl;
     return 0;
   }
-  Head = Head->Next;
+  Head = Head->Next; // goes to the next element 
   p->Next = NULL;
   p->Previous = NULL;
-  return p;
+  //delete p;
+  return p; // you can return the node or just delete it here 
+  //return if you are plannig to use that node // for example printing it 
 }
 
 
 void Add(int value){
-  Node* newNode= new Node();
+  Node* newNode= new Node(); 
   newNode->Data = value;
+  //first make next and previous pointers null
   newNode->Next = NULL;
   newNode->Previous = NULL;
-
+  // if the list is empty head and tail are the same and point to the new element
   if(Head == NULL){
     Head = newNode;
     Tail = Head;
@@ -54,8 +54,8 @@ void Add(int value){
 }
 
 void printQ(){
-  Node* p = Head;
-  Node *node = p;
+  //Node* p = Head;
+  Node *node = Head;
   while (node!=Tail){
     std::cout << node->Data << " ";
     node= node->Next;
@@ -73,8 +73,6 @@ void printQ(){
   }
 }
 };
-
-
 
 int main(){
   Queue *q1 = new Queue();
